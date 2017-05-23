@@ -7,7 +7,19 @@
 
 ## Framing
 
-Let's start with a problem: you take on a project for a client that wants you to create a dashboard that allows individual investors to easily view and track his / her portfolio. Seems simple enough until the client gives you their core requirement: users must be able to see their stocks update in real time.
+Websockets is a different web standard for talking to our servers...asynchronously.
+
+Before we dive into WebSockets, let's think back on HTTP for a moment, in particular the HTTP request-response cycle.
+
+It's simple. Just make a request to a url, provide an HTTP method and optionally some data. Then wait for the server to handle our request and send back the response. It's served us pretty well thus far.
+
+HTTP is great when we know we need some some piece of data and want to ask the server to hand it to us.
+
+What happens when the server has new data that we need to show on the client browser but we don't know that?
+
+Think of an auction website like [eBay](https://www.ebay.com). You want to be notified on the page as soon as the price changes (or, ::gasp:: you've been outbid!). Constantly spamming the refresh button works, but that's not a good experience for users.
+
+Using some of the techniques you've learned in class so far, how would you keep the auction's price, high-bidder and countdown updated in real time?
 
 ## Think, Pair, Share (10 minutes / 0:10)
 
@@ -62,15 +74,15 @@ Robin's website has a click counter that counts the number of prompts generated.
 
 AJAX uses HTTP.
 * You "pull" information from the server (i.e., you make a request and you get something back)
-* It's much like having a conversation via walkie-talkies, where each walkie-talkie has a unique number to you have to dial in order to reach that particular walkie-talkie. Think of it as a one-way phone.
+* It's much like having a conversation via walkie-talkies. At any given time you're either talking or listening for a response.
 
 ### WebSockets
 
-What is it? Long story short, a different type of model for the communication of a client and a server.
+It's a different type of model for the communication between a client and a server.
 
 > WebSockets provides a standardized way for the server to send content to the browser without being solicited by the client, and allowing for messages to be passed back and forth while keeping the connection open. In this way, a two-way (bi-directional) ongoing conversation can take place between a browser and the server.
 
-By utilizing WebSockets, a client can open up a connection to a server that allows for the easy two-way transfer of data. This makes it great for real-time, event-driven web applications.
+By utilizing WebSockets, a client can open up and maintain a connection to a server that allows for the easy two-way transfer of data. Once the connection is made either side can send data to the other end. This makes it great for real-time, event-driven web applications.
 
 Twitch and Slack are a couple of the notable web apps out there that are powered by WebSockets.
 
@@ -79,7 +91,7 @@ Twitch and Slack are a couple of the notable web apps out there that are powered
 We can use WebSockets with Javascript
 - Our code opens a connection between two computers and maintains it
 - Instead of having to make a new request every time you want information from the server, it can "push" information to you via this open connection
-- It's as if you were on the phone instead of using walkie-talkies
+- It's as if you were on the phone instead of using walkie-talkies, talking and listening at the same time.
 
 ### We Do: WDI Plays BrowserQuest
 
