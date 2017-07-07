@@ -11,7 +11,6 @@ Let's start with a problem: you take on a project for a client that wants you to
 
 ## Think, Pair, Share (10 minutes / 0:10)
 
-> 5 minutes exercise. 5 minutes review.
 
 With the people at your table try to figure out how you might implement real time data fetching (i.e., constantly be listening for changes in data in a database)...
 
