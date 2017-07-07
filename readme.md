@@ -111,9 +111,7 @@ Each is best suited for different things
 
 > The important part of this exercise is to (1) implement WebSockets and (2) integrate it with what we have learned over the past several weeks. Parts I & II are most important for this lesson.
 
-## Part I: Socket.io Walkthrough (40 minutes / 1:30)
-
-> 30 minutes exercise. 10 minutes review.
+## Part I: Socket.io Walkthrough (30 minutes / 1:20)
 
 Socket.io is a library for WebSockets, which we'll be using to create a WebSockets server
 - You can make WebSocket requests in both the front end and the back end ([documentation](http://socket.io/docs/))
