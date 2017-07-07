@@ -83,9 +83,8 @@ We can use WebSockets with Javascript
 
 ### We Do: WDI Plays BrowserQuest
 
-> 7 minutes exercise. 3 minutes review.
 
-Mozilla created a very cool game called [BrowserQuest](http://browserquest.mozilla.org/) using HTML canvas and WebSockets. You're going to play it for the next 7 minutes.
+Mozilla created a very cool game called [BrowserQuest](http://browserquest.mozilla.org/) using HTML canvas and WebSockets. You're going to play it for the next 10 minutes.
 
 While playing, consider the following questions...
 * What pieces of information are being relayed between the client and server?
