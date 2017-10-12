@@ -5,7 +5,7 @@
 - Compare the request-response model of HTTP with the bi-directional model of WebSockets
 - Use the Socket.io library to write a client and server that communicate over WebSockets
 
-## Framing
+## Framing (5 minutes / 0:5)
 
 Websockets is a different web standard for talking to our servers...asynchronously.
 
@@ -13,15 +13,13 @@ Before we dive into WebSockets, let's think back on HTTP for a moment, in partic
 
 It's simple. Just make a request to a url, provide an HTTP method and optionally some data. Then wait for the server to handle our request and send back the response. It's served us pretty well thus far.
 
-HTTP is great when we know we need some some piece of data and want to ask the server to hand it to us.
-
-What happens when the server has new data that we need to show on the client browser but we don't know that?
+HTTP is great when we know we need some some piece of data and want to ask the server to hand it to us. But what happens when the server has new data that we need to show on the client browser but we don't know that?
 
 Think of an auction website like [eBay](https://www.ebay.com). You want to be notified on the page as soon as the price changes (or, ::gasp:: you've been outbid!). Constantly spamming the refresh button works, but that's not a good experience for users.
 
 Using some of the techniques you've learned in class so far, how would you keep the auction's price, high-bidder and countdown updated in real time?
 
-## Think, Pair, Share (10 minutes / 0:10)
+## Think, Pair, Share (5 minutes / 0:10)
 
 
 With the people at your table try to figure out how you might implement real time data fetching (i.e., constantly be listening for changes in data in a database)...
@@ -96,7 +94,7 @@ We can use WebSockets with Javascript
 ### We Do: WDI Plays BrowserQuest
 
 
-Mozilla created a very cool game called [BrowserQuest](http://browserquest.mozilla.org/) using HTML canvas and WebSockets. You're going to play it for the next 10 minutes.
+Mozilla created a very cool game called [BrowserQuest](http://browserquest.mozilla.org/) using HTML canvas and WebSockets. You're going to play it for the next 5 minutes.
 
 While playing, consider the following questions...
 * What pieces of information are being relayed between the client and server?
@@ -115,261 +113,112 @@ Each is best suited for different things
 * HTTP is better for sending big packets of data, but inefficient for small packets of data since you send a bunch of data each time as headers
 * WebSockets is better for sending small packets of data at a frequent rate
 
-## Break (10 minutes / 0:50)
+### Socket.io
 
-## You Do: Implement WebSockets
-
-> The important part of this exercise is to (1) implement WebSockets and (2) integrate it with what we have learned over the past several weeks. Parts I & II are most important for this lesson.
-
-## Part I: Socket.io Walkthrough (30 minutes / 1:20)
-
-Socket.io is a library for WebSockets, which we'll be using to create a WebSockets server
+Socket.io is a JavaScript library for WebSockets, which we'll be using to create a WebSockets server
 - You can make WebSocket requests in both the front end and the back end ([documentation](http://socket.io/docs/))
 - It works on every platform, browser or device, focusing equally on reliability and speed
 
-#### [Do Socket.io's walkthrough to make a chat app.](http://socket.io/get-started/chat/)
-
-As a first step, however, instead of manually creating the `package.json` file as they suggest, go ahead and run `$ npm init -y`
-
-<details>
-  <summary><strong>Solution...</strong></summary>
-
-  ```html
-  <!-- index.html -->
-
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Socket.IO chat</title>
-      <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font: 13px Helvetica, Arial; }
-        form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-        form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-        form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-        #messages { list-style-type: none; margin: 0; padding: 0; }
-        #messages li { padding: 5px 10px; }
-        #messages li:nth-child(odd) { background: #eee; }
-      </style>
-    </head>
-    <body>
-      <ul id="messages"></ul>
-      <form action="">
-        <input id="m" autocomplete="off" /><button>Send</button>
-      </form>
-    </body>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-
-    var socket = io()
-    $('form').submit(evt => {
-      evt.preventDefault()
-      socket.emit('chat message', $('#m').val())
-      $('#m').val('')
-    })
-
-    socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(msg));
-    })
-
-    </script>
-  </html>
-
-  ```
-
-  ```js
-  // index.js
-
-  var app = require('express')()
-  var http = require('http').Server(app)
-  var io = require('socket.io')(http)
-
-  app.get('/', function(req, res){
-    res.sendFile(__dirname + "/index.html")
-  })
-
-  io.on('connection', function(socket){
-    socket.on('chat message', function(msg){
-      io.emit('chat message', msg);
-    });
-  });
-
-  http.listen(3000, function(){
-    console.log('listening on *:3000')
-  })
-
-  ```
-
-</details>
-
-> [Another solution...](https://github.com/ga-wdi-exercises/mean-socket-chat/tree/socket-io-solution)
-
-## Break (10 minutes / 1:40)
-
-## Part II: Refactor With Angular (Rest of Lesson)
-
-We're going to pluck out the DOM manipulation done with jQuery and replace that functionality with Angular functionality. Below are some concrete steps to guide you through this process. There are some gaps, however, you will need to fill in.
-
-Don't forget to add links to angular CDNs in `index.html`...
-
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+#### Basic Syntax
+```
+io.emit('event name', message)
 ```
 
-### Next Steps
+## You Do: Implement WebSockets in a simple chat app
 
-All of your front-end Javascript can go in the `<script>` tag in `index.html` that currently contains the Socket and jQuery code.
+## Part I: Socket.io with Express (30 minutes / 1:10)
 
-#### 1. Define an Angular module
+#### Instructions
 
-#### 2. Bootstrap the Angular app using `ng-app`
+In your sandbox:
+```bash
+$ mkdir sockets-express
+$ cd sockets-express
+$ npm init -y
+```
+Then follow the instructions from [Socket.io documentation]((http://socket.io/get-started/chat/).
 
-#### 3. Define an Angular controller
+<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/express-solution)!
 
-It should initialize a `messages` value as an empty array. This will contain all of the incoming chat messages.
+## Break (10 minutes / 1:20)
 
-#### 4. Link the controller to the app using `ng-controller`
+## Part II: Socket.io with React (Rest of Lesson)
 
-Even though we're not using UI Router, we can still link it to our app using the `"controllerName as vm"` syntax.
+We're going to recreate the chat app with React. Below are some concrete steps to guide you through this process. There are some gaps, however, you will need to fill in.
 
-#### 5. Move `socket.on` into the controller
+#### Instructions
 
-#### 6. Update `socket.on` callback function
+In your sandbox, create a new React app:
 
-Instead of using jQuery or Vanilla JS to display messages in the browser, we will use Angular directives and our controller to do the following inside of the `socket.on` callback...
-* Add the new message to the `messages` variable we defined earlier
-* Add `$scope.$apply()` at the end of the callback.
-* In order to use `$scope.$apply()`, we need to inject `"$scope"` as a dependency to our controller and pass in `$scope` as an argument to our controller function
+```bash
+$ create-react-app sockets-react
+$ cd sockets-react
+```
 
-> **What is `$scope.$apply()`?**
->
-> Socket events will not trigger a state change in Angular. This means that, without some additional code, our chat app will not update the view when a new message comes in. We can use `$scope.$apply()` to force this state change.
+Instead of creating a separate back-end app, we can just create a `server.js` file, to function as a server.
 
-#### 7. Use an Angular directive to display messages in the view
+```bash
+$ touch server.js
+$ npm install express http socket.io
+```
 
-Add an Angular directive to `index.html` that will render all of our `messages`.
 
-<details>
-  <summary><strong>Hint...</strong></summary>
+In `serevr.js`, configure Socket.io connection
+```
+// Express
+const express = require('express')
+const app = express()
 
-  > Use `ng-repeat`
+// Socket.io
+const http = require('http')
+const socketIO = require('socket.io')
+const server = http.createServer(app)
+const io = socketIO.listen(server)
+server.listen(3001)
 
-</details>
+// Socket.io Connection
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => io.emit('chat message', msg))
+})
+```
 
-#### 8. Update form submit
+Then refactor `src/App.js` to be our chat app:
+- Require Socket.io Client, and connect to the server connection!
+```
+import openSocket from 'socket.io-client'
+const socket = openSocket('http://localhost:3001')
+```
+- In the constructor method, pass an empty array of messages to the state
+- The App component should return the same form we used in our previous express app, with additional reference to a `submitMessage` method.
+```
+<div>
+  <ul id='messages'>{messages}</ul>
+  <form action='' onSubmit={this.submitMessage}>
+    <input id='message' /><button>Send</button>
+  </form>
+</div>
+```
 
-Add an Angular directive to the form in `index.html` that triggers a yet-to-be-defined controller method -- let's call it `sendMessage` -- that will handle submitting messages to our server.
+You will need to configure the `submitMessage` method to listen to new messages, and when a new message is received:
+1. Add the new message to the this.state.messages array
+2. Emit the new message to the server
 
-<details>
-  <summary><strong>Hint...</strong></summary>
+<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/react-solution)!
 
-  > Use `ng-submit`
+## Part III: Persisting Data (Bonus)
 
-</details>
+Now, when a new user joins the chat, they can only receive the new messages, but they can't receive the messages exchanged before they have joined. What if we can persist the messages, so users can always have them?
 
-Use another Angular directive that will allow bind whatever value is currently in the input field in the controller.
+#### Instructions
 
-<details>
-  <summary><strong>Hint...</strong></summary>
-
-  > Use `ng-model`
-
-</details>
-
-You should also remove the `action` attribute from the form. That will cause you problems later on.
-
-#### 9. Add `sendMessage` method to controller
-
-Create a `sendMessage` method in the controller. Then, move the `socket.emit` line of code into that method.
-
-Update `socket.emit` so that it sends whatever message the user has entered into the input field.
-
-Also, once a message is submitted through Socket.io, the input should be cleared so that a new message can be sent.
-
-<details>
-  <summary><strong>Solution...</strong></summary>
-
-  ```html
-  <!DOCTYPE html>
-  <html ng-app="app">
-    <head>
-      <title>Socket.IO chat</title>
-      <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font: 13px Helvetica, Arial; }
-        form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-        form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-        form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-        #messages { list-style-type: none; margin: 0; padding: 0; }
-        #messages li { padding: 5px 10px; }
-        #messages li:nth-child(odd) { background: #eee; }
-      </style>
-    </head>
-    <body ng-controller="controller as vm">
-      <ul ng-repeat="msg in vm.messages" id="messages">
-        <li>{{ msg }}</li>
-      </ul>
-      <form ng-submit="vm.sendMessage()">
-        <input ng-model="vm.message" id="m" autocomplete="off" /><button>Send</button>
-      </form>
-    </body>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
-    <script>
-
-    let socket = io()
-
-    angular
-      .module("app", [])
-      .controller("controller", [
-        "$scope",
-        ControllerFunction
-      ])
-
-    function ControllerFunction($scope){
-      let vm = this
-      vm.messages = []
-
-      vm.sendMessage = evt => {
-        socket.emit("chat message", vm.message)
-        vm.message = ""
-      }
-
-      socket.on('chat message', msg => {
-        vm.messages.push(msg)
-        $scope.$apply()
-      })
-    }
-
-    </script>
-  </html>
-
-  ```
-
-</details>
-
-> [Another solution...](https://github.com/ga-wdi-exercises/mean-socket-chat/commit/3b16e046799b373c73569075769367291614ee4d)
-
-## (Bonus) Part III: Persisting Data
-
-* Use `npm` to install `mongoose` and require it in `index.js`
+* Use `npm` to install `mongoose` and require it in `server.js`
 * Use `mongoose` to create a new model `Message` and define an appropriate schema for a message
-* Whenever a new message is sent to the server from the client, persist it
+* Whenever a connection it created, query the database for all the saved messages.
+* whenever a message is sent, save it to the database.
 
-#### More Bonuses
+<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/blob/mern-solution/)!
 
-Use angular to render all persisted messages.
-* In your server, define a route for `/api/messages` that renders all your app's messages as `JSON`
-* In your angular code, define a factory for `Message` that uses `$resource` to hit your server's api endpoint
-* In your angular controller, use your newly defined factory to query for all messages and pass that data to the view
-* In the view, render each message
-
-> [Solution](https://github.com/ga-wdi-exercises/mean-socket-chat/commit/8c8214b98d62d4e851c700ba5e53cd056e30e18b)
-
-#### More Feature Ideas
+#### More Bonus Features Ideas
 
 * Support deleting a message
 * Support deleting all messages
@@ -383,14 +232,10 @@ Use angular to render all persisted messages.
 ------
 
 ## Resources
-
-- [angular-socket-io](https://github.com/btford/angular-socket-io)
-- [Writing an Angular app with socket.io](http://www.html5rocks.com/en/tutorials/frameworks/angular-websockets/)
-- [Socket.io w/ Express](http://www.programwitherik.com/socket-io-tutorial-with-node-js-and-express/)
-- [Socket.io w/ Node](http://danielnill.com/nodejs-tutorial-with-socketio/)
-- [WebSockets w/ Socket.io](https://howtonode.org/websockets-socketio)
 - [Announcing WebSockets](https://www.websocket.org/quantum.html)
-
+- [WebSockets w/ Socket.io](https://howtonode.org/websockets-socketio)
+- [Socket.io w/ Node](http://danielnill.com/nodejs-tutorial-with-socketio/)
+- [Socket.io w/ Express](http://www.programwitherik.com/socket-io-tutorial-with-node-js-and-express/)
 
 <!-- Add testing notes (i.e., now you should be able to do/see this) -->
 <!-- Add note about already seeing this in action with Firebase -->
