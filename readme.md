@@ -7,7 +7,19 @@
 
 ## Framing (5 minutes / 0:5)
 
-Websockets is a different web standard for talking to our servers...asynchronously.
+Websockets are a different web standard for talking to our servers...asynchronously.
+
+Before we dive into WebSockets, let's think back on HTTP for a moment, in particular the HTTP request-response cycle.
+
+It's simple. Just make a request to a url, provide an HTTP method and optionally some data. Then wait for the server to handle our request and send back the response. It's served us pretty well thus far.
+
+HTTP is great when we know we need some some piece of data and want to ask the server to hand it to us.
+
+What happens when the server has new data that we need to show on the client browser but we don't know that?
+
+Think of an auction website like [eBay](https://www.ebay.com). You want to be notified on the page as soon as the price changes (or, ::gasp:: you've been outbid!). Constantly spamming the refresh button works, but that's not a good experience for users.
+
+Using some of the techniques you've learned in class so far, how would you keep the auction's price, high-bidder and countdown updated in real time?
 
 Before we dive into WebSockets, let's think back on HTTP for a moment, in particular the HTTP request-response cycle.
 
