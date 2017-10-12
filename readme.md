@@ -118,11 +118,7 @@ Each is best suited for different things
 Socket.io is a JavaScript library for WebSockets, which we'll be using to create a WebSockets server
 - You can make WebSocket requests in both the front end and the back end ([documentation](http://socket.io/docs/))
 - It works on every platform, browser or device, focusing equally on reliability and speed
-
-#### Basic Syntax
-```
-io.emit('event name', message)
-```
+- Basic Syntax is `io.emit('event name', message)`
 
 ## You Do: Implement WebSockets in a simple chat app
 
