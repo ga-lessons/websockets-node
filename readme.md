@@ -136,7 +136,7 @@ $ mkdir sockets-express
 $ cd sockets-express
 $ npm init -y
 ```
-Then follow the instructions from [Socket.io documentation]((http://socket.io/get-started/chat/).
+Then follow the instructions from [Socket.io documentation](http://socket.io/get-started/chat/).
 
 <strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/express-solution)!
 
@@ -216,7 +216,7 @@ Now, when a new user joins the chat, they can only receive the new messages, but
 * Whenever a connection it created, query the database for all the saved messages.
 * whenever a message is sent, save it to the database.
 
-<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/blob/mern-solution/)!
+<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/mern-solution)!
 
 #### More Bonus Features Ideas
 
