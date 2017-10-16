@@ -146,7 +146,9 @@ $ npm init -y
 ```
 Then follow the instructions from [Socket.io documentation](http://socket.io/get-started/chat/).
 
-<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/express-solution)!
+**NOTE:** You can run this app using `nodemon`
+
+**NOTE:** You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/express-solution)!
 
 ## Break (10 minutes / 1:20)
 
@@ -211,7 +213,9 @@ You will need to configure the `submitMessage` method to listen to new messages,
 1. Add the new message to the this.state.messages array
 2. Emit the new message to the server
 
-<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/react-solution)!
+**NOTE** To run this app, you need 2 Terminal windows: one running `nodemon server.js`, and the other one running `npm start`.
+
+**NOTE:** You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/react-solution)!
 
 ## Part III: Persisting Data (Bonus)
 
@@ -224,7 +228,9 @@ Now, when a new user joins the chat, they can only receive the new messages, but
 * Whenever a connection it created, query the database for all the saved messages.
 * whenever a message is sent, save it to the database.
 
-<strong>NOTE: </strong>You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/mern-solution)!
+**NOTE** To run this app, you need 3 Terminal windows: one running `mongod`, and one running `nodemon server.js`, and the third running `npm start`.
+
+**NOTE:** You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/mern-solution)!
 
 #### More Bonus Features Ideas
 
