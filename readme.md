@@ -13,18 +13,6 @@ Before we dive into WebSockets, let's think back on HTTP for a moment, in partic
 
 It's simple. Just make a request to a url, provide an HTTP method and optionally some data. Then wait for the server to handle our request and send back the response. It's served us pretty well thus far.
 
-HTTP is great when we know we need some some piece of data and want to ask the server to hand it to us.
-
-What happens when the server has new data that we need to show on the client browser but we don't know that?
-
-Think of an auction website like [eBay](https://www.ebay.com). You want to be notified on the page as soon as the price changes (or, ::gasp:: you've been outbid!). Constantly spamming the refresh button works, but that's not a good experience for users.
-
-Using some of the techniques you've learned in class so far, how would you keep the auction's price, high-bidder and countdown updated in real time?
-
-Before we dive into WebSockets, let's think back on HTTP for a moment, in particular the HTTP request-response cycle.
-
-It's simple. Just make a request to a url, provide an HTTP method and optionally some data. Then wait for the server to handle our request and send back the response. It's served us pretty well thus far.
-
 HTTP is great when we know we need some some piece of data and want to ask the server to hand it to us. But what happens when the server has new data that we need to show on the client browser but we don't know that?
 
 Think of an auction website like [eBay](https://www.ebay.com). You want to be notified on the page as soon as the price changes (or, ::gasp:: you've been outbid!). Constantly spamming the refresh button works, but that's not a good experience for users.
@@ -213,7 +201,7 @@ You will need to configure the `submitMessage` method to listen to new messages,
 1. Add the new message to the this.state.messages array
 2. Emit the new message to the server
 
-**NOTE** To run this app, you need 2 Terminal windows: one running `nodemon server.js`, and the other one running `npm start`.
+**NOTE:** To run this app, you need 2 Terminal windows: one running `nodemon server.js`, and the other one running `npm start`.
 
 **NOTE:** You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/react-solution)!
 
@@ -228,7 +216,7 @@ Now, when a new user joins the chat, they can only receive the new messages, but
 * Whenever a connection it created, query the database for all the saved messages.
 * whenever a message is sent, save it to the database.
 
-**NOTE** To run this app, you need 3 Terminal windows: one running `mongod`, and one running `nodemon server.js`, and the third running `npm start`.
+**NOTE:** To run this app, you need 3 Terminal windows: one running `mongod`, and one running `nodemon server.js`, and the third running `npm start`.
 
 **NOTE:** You can find the solution [here](https://git.generalassemb.ly/ga-wdi-exercises/websockets-chat-example/tree/mern-solution)!
 
