@@ -162,7 +162,7 @@ $ npm install express http socket.io
 
 
 In `serevr.js`, configure Socket.io connection
-```
+```js
 // Express
 const express = require('express')
 const app = express()
@@ -188,7 +188,7 @@ const socket = openSocket('http://localhost:3001')
 ```
 - In the constructor method, pass an empty array of messages to the state
 - The App component should return the same form we used in our previous express app, with additional reference to a `submitMessage` method.
-```
+```js
 <div>
   <ul id='messages'>{messages}</ul>
   <form action='' onSubmit={this.submitMessage}>
@@ -196,10 +196,16 @@ const socket = openSocket('http://localhost:3001')
   </form>
 </div>
 ```
+- The App component shoud have a `componentDidMount` method, which listen to `chat message`, and adds the new message to the state messages array.
+```js
+componentDidMount () {
+    socket.on('chat message', (msg) => {
+      this.setState({messages: this.state.messages.concat(msg)})
+    })
+  }
+```
 
-You will need to configure the `submitMessage` method to listen to new messages, and when a new message is received:
-1. Add the new message to the this.state.messages array
-2. Emit the new message to the server
+- You will need to configure the `submitMessage` method to listen to new messages, and when a new message is received, emit the new message to the server, and empty the input field.
 
 **NOTE:** To run this app, you need 2 Terminal windows: one running `nodemon server.js`, and the other one running `npm start`.
 
